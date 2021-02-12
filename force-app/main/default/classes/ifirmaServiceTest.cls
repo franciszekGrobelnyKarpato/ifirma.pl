@@ -5,12 +5,103 @@ private class ifirmaServiceTest {
         public HTTPResponse respond(HTTPRequest req) {
             if (req.getEndpoint().endsWith('list.json') || req.getEndpoint().endsWith(String.valueOf(Datetime.now().year()))) {
                 HTTPResponse res = new HTTPResponse();
-                res.setBody('{"response": [{"KontrahentNazwa": "kkktest","KontrahentId": 45015903,"DataWystawienia": "2020-11-30","PelnyNumer": "1/2020","Brutto": 33}]}');
+                res.setBody('{"response": [{"KontrahentNazwa": "kkktest",'
+                                            +'"KontrahentId": 45015903,'
+                                            +'"DataWystawienia": "2020-11-30",'
+                                            +'"PelnyNumer": "1/2020",'
+                                            +'"Brutto": 33}]}');
                 res.setStatusCode(200);
                 return res;
             } else{
                 HTTPResponse res = new HTTPResponse();
-                res.setBody('{"response": {"Zaplacono": 0,"ZaplaconoNaDokumencie": 0,"LiczOd": "BRT","NumerKontaBankowego": null,"IdentyfikatorKontrahenta": null,"PrefiksUEKontrahenta": null,"NIPKontrahenta": null,"DataWystawienia": "2020-11-24","MiejsceWystawienia": null,"DataSprzedazy": "2020-11-24","FormatDatySprzedazy": "DZN","TerminPlatnosci": "2020-12-01","SposobZaplaty": "PRZ","NazwaSeriiNumeracji": "Domyślna roczna","NazwaSzablonu": "Logo","RodzajPodpisuOdbiorcy": "BPO","PodpisOdbiorcy": null,"PodpisWystawcy": null,"Uwagi": null,"WidocznyNumerGios": false,"Numer": 1,"Pozycje": [{"Id": 106871869,"StawkaVat": null,"Ilosc": 12,"CenaJednostkowa": 1,"NazwaPelna": "samochód zabawka","Jednostka": "1","PKWiU": "Art. 113 ust. 1","PodstawaPrawna": "Art. 113 ust. 1","TypStawkiVat": "ZW","Rabat": null,"CenaZRabatem": 1,"StawkaRyczaltu": null,"MagazynPozycjaId": null,"MagazynMagazynId": null,"MagazynObiektSprzedazyId": null,"GTU": null}],"Kontrahent": {"Nazwa": "marek","Nazwa2": null,"Identyfikator": "MAREK(2)","PrefiksUE": "CZ","NIP": "1231313","Ulica": null,"KodPocztowy": "12-100","Kraj": null,"Miejscowosc": "Czarkowy Grąd","Email": null,"Telefon": null,"OsobaFizyczna": false,"ZgodaNaEfaktury": true,"DataUdzieleniaZgody": null,"EmailDlaFaktury": null,"JestDostawca": false,"JestOdbiorca": true,"AdresZagraniczny": false,"OdbiorcaNaFakturze": null,"Skype": null,"Faks": null,"Uwagi": null,"Www": null,"NazwaBanku": null,"NumerKonta": null,"DrugiTelefon": null,"AdresKorespondencyjnyUlica": null,"AdresKorespondencyjnyKodPocztowy": null,"AdresKorespondencyjnyKraj": null,"AdresKorespondencyjnyMiejscowosc": null,"PodmiotPowiazany": false},"PelnyNumer": "1/2020","WidocznyNumerBdo": false,"WpisDoKpir": "TOW","SplitPayment": false,"ProceduryJpk": {"SW": false,"EE": false,"TP": false,"TT_WNT": false,"TT_D": false,"MR_T": false,"MR_UZ": false,"I_42": false,"I_63": false,"BSPV": false,"BSPVDostawa": false,"BMPVProwizja": false,"MPP": false}}}');
+                res.setBody('{"response": {"Zaplacono": 0,'
+                                            +'"ZaplaconoNaDokumencie": 0,'
+                                            +'"LiczOd": "BRT",'
+                                            +'"NumerKontaBankowego": null,'
+                                            +'"IdentyfikatorKontrahenta": null,'
+                                            +'"PrefiksUEKontrahenta": null,'
+                                            +'"NIPKontrahenta": null,'
+                                            +'"DataWystawienia": "2020-11-24",'
+                                            +'"MiejsceWystawienia": null,'
+                                            +'"DataSprzedazy": "2020-11-24",'
+                                            +'"FormatDatySprzedazy": "DZN",'
+                                            +'"TerminPlatnosci": "2020-12-01",'
+                                            +'"SposobZaplaty": "PRZ",'
+                                            +'"NazwaSeriiNumeracji": "Domyślna roczna",'
+                                            +'"NazwaSzablonu": "Logo",'
+                                            +'"RodzajPodpisuOdbiorcy": "BPO",'
+                                            +'"PodpisOdbiorcy": null,'
+                                            +'"PodpisWystawcy": null,'
+                                            +'"Uwagi": null,'
+                                            +'"WidocznyNumerGios": false,'
+                                            +'"Numer": 1,'
+                                            +'"Pozycje": [{"Id": 106871869,'
+                                            +'           "StawkaVat": null,'
+                                            +'           "Ilosc": 12,'
+                                            +'           "CenaJednostkowa": 1,'
+                                            +'           "NazwaPelna": "samochód zabawka",'
+                                            +'           "Jednostka": "1",'
+                                            +'           "PKWiU": "Art. 113 ust. 1",'
+                                            +'           "PodstawaPrawna": "Art. 113 ust. 1",'
+                                            +'           "TypStawkiVat": "ZW",'
+                                            +'           "Rabat": null,'
+                                            +'           "CenaZRabatem": 1,'
+                                            +'           "StawkaRyczaltu": null,'
+                                            +'           "MagazynPozycjaId": null,'
+                                            +'           "MagazynMagazynId": null,'
+                                            +'           "MagazynObiektSprzedazyId": null,'
+                                            +'           "GTU": null}],'
+                                            +'"Kontrahent": {"Nazwa": "marek",'
+                                            +'               "Nazwa2": null,'
+                                            +'               "Identyfikator": "MAREK(2)",'
+                                            +'               "PrefiksUE": "CZ",'
+                                            +'               "NIP": "1231313",'
+                                            +'               "Ulica": null,'
+                                            +'               "KodPocztowy": "12-100",'
+                                            +'               "Kraj": null,'
+                                            +'               "Miejscowosc": "Czarkowy Grąd",'
+                                            +'               "Email": null,'
+                                            +'               "Telefon": null,'
+                                            +'               "OsobaFizyczna": false,'
+                                            +'               "ZgodaNaEfaktury": true,'
+                                            +'               "DataUdzieleniaZgody": null,'
+                                            +'               "EmailDlaFaktury": null,'
+                                            +'               "JestDostawca": false,'
+                                            +'               "JestOdbiorca": true,'
+                                            +'               "AdresZagraniczny": false,'
+                                            +'               "OdbiorcaNaFakturze": null,'
+                                            +'               "Skype": null,'
+                                            +'               "Faks": null,'
+                                            +'               "Uwagi": null,'
+                                            +'               "Www": null,'
+                                            +'               "NazwaBanku": null,'
+                                            +'               "NumerKonta": null,'
+                                            +'               "DrugiTelefon": null,'
+                                            +'               "AdresKorespondencyjnyUlica": null,'
+                                            +'               "AdresKorespondencyjnyKodPocztowy": null,'
+                                            +'               "AdresKorespondencyjnyKraj": null,'
+                                            +'               "AdresKorespondencyjnyMiejscowosc": null,'
+                                            +'               "PodmiotPowiazany": false},'
+                                            +'   "PelnyNumer": "1/2020",'
+                                            +'   "WidocznyNumerBdo": false,'
+                                            +'   "WpisDoKpir": "TOW",'
+                                            +'   "SplitPayment": false,'
+                                            +'   "ProceduryJpk": {"SW": false,'
+                                            +'                   "EE": false,'
+                                            +'                   "TP": false,'
+                                            +'                   "TT_WNT": false,'
+                                            +'                   "TT_D": false,'
+                                            +'                   "MR_T": false,'
+                                            +'                   "MR_UZ": false,'
+                                            +'                   "I_42": false,'
+                                            +'                   "I_63": false,'
+                                            +'                   "BSPV": false,'
+                                            +'                   "BSPVDostawa": false,'
+                                            +'                   "BMPVProwizja": false,'
+                                            +'                   "MPP": false'
+                                            +'               }'
+                                            +'   }'
+                                            +'}');
                 res.setStatusCode(200);
                 return res;
             } 
@@ -20,8 +111,8 @@ private class ifirmaServiceTest {
     static void givenInvoiceWhenSavingPDFThenCheckIfContentVersionCreated(){
         //given
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1]; 
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1]; 
         ifirmaService.key = restdata.Key__c;
         ifirmaService.user = restdata.User__c;
 
@@ -47,21 +138,22 @@ private class ifirmaServiceTest {
         ContentVersion cv = new ContentVersion(title='1/2021', pathOnClient='not relevant', versionData=Blob.ValueOf('not relevant'));
         ifirmaService.cvMap.put(cv.Title, cv);  
         Database.insert(ifirmaService.cvMap.values()); 
-        //ContentDocument cd = new ContentDocument();
                
         //when
         ifirmaService.deleteOldPDfs(ifirmaService.cvMap);
 
         //then
-        List<ContentDocument> cdList = [select id from ContentDocument];
-        System.assertEquals(0, [select id from ContentDocument].size());
+        List<ContentDocument> cdList = [SELECT id 
+                                        FROM ContentDocument];
+        System.assertEquals(0, [SELECT id 
+                                FROM ContentDocument].size());
     }
     @isTest
      static void givenRestdataWhenSetMetadataThenSetUserAndKey(){  
          //given
          Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1]; 
+                                           FROM Ifirma_Rest_Data__mdt 
+                                           WHERE Label='Settings' LIMIT 1]; 
          //when             
         ifirmaService.setMetaData();
 
@@ -279,8 +371,10 @@ private class ifirmaServiceTest {
         Test.stopTest();
 
         //then
-        System.assertNotEquals(0, [select id from ContentDocument].size());
-        System.assertEquals(1, [select id from ContentDocument].size());
+        System.assertNotEquals(0, [SELECT id 
+                                   FROM ContentDocument].size());
+        System.assertEquals(1, [SELECT id 
+                                FROM ContentDocument].size());
     }
     @isTest
     static void givenContentVersionWhenUpdateInvoiceThenCreateContentDocument(){
@@ -309,8 +403,10 @@ private class ifirmaServiceTest {
         Test.stopTest();
 
         //then
-        System.assertNotEquals(0, [select id from ContentDocument].size());
-        System.assertEquals(1, [select id from ContentDocument].size());
+        System.assertNotEquals(0, [SELECT id 
+                                   FROM ContentDocument].size());
+        System.assertEquals(1, [SELECT id 
+                                FROM ContentDocument].size());
     }
     @isTest
     static void givenNotExistedInvoiceLinesWhenCreateOrUpdateThenCheckIfCreated(){
@@ -384,8 +480,8 @@ private class ifirmaServiceTest {
     static void givenRestDataWhenMainMethodThenCheckCustomMetaData(){
         //given
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1];  
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1];  
         Invoice_Custom__c invoice = new Invoice_Custom__c(Whole_Number__c = '1_2020', Name = 'not relevant', CurrencyIsoCode = 'PLN');                
         Database.insert(invoice);        
         
@@ -405,8 +501,8 @@ private class ifirmaServiceTest {
     static void givenMetaDataWhenFiredByScheduleThenCheckIfAnyInvoicesAddedToMap(){
         //given
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1]; 
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1]; 
         ifirmaService.user = restdata.User__c;
         ifirmaService.key = restdata.Key__c;
         ifirmaService.isScheduleFired = true;
@@ -423,8 +519,8 @@ private class ifirmaServiceTest {
     static void givenMetaDataAndAccountWhenGettingInvoicesListThenCheckIfForAccouontServiceSentData(){
         //given
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1]; 
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1]; 
         ifirmaService.user = restdata.User__c;
         ifirmaService.key = restdata.Key__c;  
         ifirmaService.isAccountFired = true;
@@ -444,8 +540,8 @@ private class ifirmaServiceTest {
     static void givenAccountAndInvoiceWhenSavingInvoicesForGivenAccountThenCheckIfAnySaved(){
         //given
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1]; 
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1]; 
         ifirmaService.user = restdata.User__c;
         ifirmaService.key = restdata.Key__c;  
         ifirmaService.isAccountFired = true;
@@ -510,8 +606,12 @@ private class ifirmaServiceTest {
         ifirmaService.createInvoiceByOpportunity(opp.Id);
         Test.stopTest();
     //then
-        System.assertNotEquals(null, [select name, opportunity__c from Invoice_Custom__c where name =:inv.Name].Opportunity__c);
-        System.assertEquals(opp.Id, [select name, opportunity__c from Invoice_Custom__c where name =:inv.Name].Opportunity__c);
+        System.assertNotEquals(null, [SELECT name, opportunity__c 
+                                      FROM Invoice_Custom__c 
+                                      WHERE name =:inv.Name].Opportunity__c);
+        System.assertEquals(opp.Id, [SELECT name, opportunity__c 
+                                     FROM Invoice_Custom__c 
+                                     WHERE name =:inv.Name].Opportunity__c);
     }
     @isTest
     static void givenOpportunityAndForeignAccountWhenCreatingInvoiceForOpportunityThenCheckIfInvocieRelatedToOpportunity(){  
@@ -573,7 +673,11 @@ private class ifirmaServiceTest {
         ifirmaService.createInvoiceByOpportunity(opp.Id);
         Test.stopTest();
     //then
-        System.assertNotEquals(null, [select name, opportunity__c from Invoice_Custom__c where name =:inv.Name].Opportunity__c);
-        System.assertEquals(opp.Id, [select name, opportunity__c from Invoice_Custom__c where name =:inv.Name].Opportunity__c);
+        System.assertNotEquals(null, [SELECT name, opportunity__c 
+                                      FROM Invoice_Custom__c 
+                                      WHERE name =:inv.Name].Opportunity__c);
+        System.assertEquals(opp.Id, [SELECT name, opportunity__c 
+                                     FROM Invoice_Custom__c 
+                                     WHERE name =:inv.Name].Opportunity__c);
     }
 }

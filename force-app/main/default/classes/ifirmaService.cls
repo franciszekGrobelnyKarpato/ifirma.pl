@@ -36,9 +36,14 @@ global  class ifirmaService {
             saveInvoices(); 
         
     }
+/*
+Create contentVersion obj for every invoice downloaded from ifirma.pl
+Delete all PDFs related with existed Invoice_Custom object
+*/
     @TestVisible
     private static void savePDF(){        
-        AggregateResult invoicesAmount = [select count(Id)amount FROM Invoice_Custom__c];
+        AggregateResult invoicesAmount = [SELECT count(Id)amount 
+                                          FROM Invoice_Custom__c];
                                 
         for(String numer : numberURLsMap.keySet()){
             String hash = hmacGenerator.generateHmacSHA1('https://www.ifirma.pl/iapi/'+numberURLsMap.get(numer)+'/'+numer+'.pdf.single'+user+'faktura', key);  
@@ -68,31 +73,21 @@ Delete pdf files for existed in org invoice objects
 */
     @TestVisible
     private static void deleteOldPDFs(Map<String, contentVersion> cvMap){
-        Set<id> cvSet = new Set<id>();
-        List<Invoice_Custom__c> invoices = [SELECT  name 
-                                            FROM invoice_Custom__c];
-        List<String> invNames = new List<String>();
-        for(Invoice_Custom__c inv : invoices){
-            invNames.add(inv.Name);
-        }
+        List<id> cvList = new List<id>();      
         for(contentVersion conVers : [SELECT id, title, contentDocumentid 
                                       FROM contentVersion]){
             if(cvMap.containsKey(conVers.title)){
-                cvSet.add(conVers.contentDocumentid);
+                cvList.add(conVers.contentDocumentid);
             }                          
         }
-        
-        List<Id> documentIds = new List<Id>(new Map<Id, ContentDocument>([SELECT id 
-                                                                          FROM ContentDocument 
-                                                                          WHERE id IN :cvSet]).keySet());
-        Database.delete(documentIds);                                                                                    
+        Database.delete(cvList);                                                                                    
     }
 
     @TestVisible
     public static void setMetaData(){
         Ifirma_Rest_Data__mdt restdata = [SELECT User__c, Key__c 
-                                            FROM Ifirma_Rest_Data__mdt 
-                                            WHERE Label='Settings' LIMIT 1];  
+                                          FROM Ifirma_Rest_Data__mdt 
+                                          WHERE Label='Settings' LIMIT 1];  
         user = restdata.User__c;
         key = restdata.Key__c;
     }
@@ -124,19 +119,19 @@ Save all needed data from Salesforce Org to global properties
             wholeNummbersInIfirma.add(inv.PelnyNumer.replace('/', '_'));                       
         }
         for(Account account : [SELECT id, NIP__c 
-                                FROM Account 
-                                WHERE NIP__c IN :nipsInIfirma]){               
+                               FROM Account 
+                               WHERE NIP__c IN :nipsInIfirma]){               
             baseAccountsNIPMap.put(account.NIP__c, account);  
         }     
         for(Invoice_Custom__c invc : [SELECT id, Whole_Number__c, Name
-                                        FROM Invoice_Custom__c 
-                                        WHERE Whole_Number__c IN :wholeNummbersInIfirma]){
+                                      FROM Invoice_Custom__c 
+                                      WHERE Whole_Number__c IN :wholeNummbersInIfirma]){
             baseInvoicesWholeNumberMap.put(invc.Whole_Number__c.replace('_','/'), invc);  
             baseInvoiceNames.add(invc.Name);     
         }  
         for(Invoice_Line__c baseInvoiceLine :[SELECT Id, Name, Invoice_Custom__r.Name
-                                                FROM Invoice_Line__c 
-                                                WHERE Invoice_Custom__r.Name IN :baseInvoiceNames]){
+                                              FROM Invoice_Line__c 
+                                              WHERE Invoice_Custom__r.Name IN :baseInvoiceNames]){
             baseInvoiceLinesWholeNumberMap.put(baseInvoiceLine.Id, baseInvoiceLine);      
         }
     }
@@ -221,8 +216,8 @@ Return a ContentDocumentLink for specific contentVersion
     private static ContentDocumentLink getDocumentLInkBy(contentVersion cv, String invoiceType){
         ContentDocumentLink cdl = new ContentDocumentLink();
         cdl.ContentDocumentId = [SELECT contentDocumentId 
-                                    FROM contentVersion 
-                                    WHERE id =:cv.id].contentDocumentId;
+                                 FROM contentVersion 
+                                 WHERE id =:cv.id].contentDocumentId;
         if(invoiceType.equals('create')){
         cdl.LinkedEntityId = customInvoiceMap.get(cv.title.replace('/','_')).id;
         }else if(invoiceType.equals('update')){
@@ -263,8 +258,8 @@ Create invoice lines for not existed invoice or update(delete before then insert
         
         if(invoiceLinesToUpdate.size() > 0){
             Database.delete([SELECT Id 
-                            FROM Invoice_Line__c 
-                            WHERE Invoice_Custom__r.Whole_Number__c IN :invoiceLinesToUpdate.keySet()]);
+                             FROM Invoice_Line__c 
+                             WHERE Invoice_Custom__r.Whole_Number__c IN :invoiceLinesToUpdate.keySet()]);
 
             for(String key : invoiceLinesToUpdate.keySet()){
                 for(SingleInvoiceJSON2Apex.Pozycje invoiceLineC : invoiceLinesToUpdate.get(key)){
@@ -391,7 +386,7 @@ then save invoice to Invoice Custom Object with related Opportunity
         
         Map<String, Ifirma_Invoice_Settings__mdt> invoiceRestdata = new Map<String, Ifirma_Invoice_Settings__mdt>();
         for(Ifirma_Invoice_Settings__mdt invoiceSett : [SELECT Label, Country_Names__c, Authorized_Person__c, Place_Of_Creation__c, Template_Name__c, Bank_Account_Number__c, Currency_Type__c, Currency_Value__c
-                                              FROM Ifirma_Invoice_Settings__mdt]){
+                                                        FROM Ifirma_Invoice_Settings__mdt]){
             invoiceRestdata.put(invoiceSett.Label, invoiceSett);
         }         
         for(String label : invoiceRestdata.keySet()){
