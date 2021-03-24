@@ -25,7 +25,7 @@ node {
             // ------------------------------------------------------------------------
  
             stage('Authorize DevHub') {
-                rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SFDC_HOST} --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile C:\openssl\bin\server.key"
+                rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SFDC_HOST} --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile C:\\openssl\\bin\\server.key"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
