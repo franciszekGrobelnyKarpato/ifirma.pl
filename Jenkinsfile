@@ -1,17 +1,18 @@
 pipeline {
   agent any
+  def toolbelt = tool 'toolbelt'
   stages {
     stage('test') {
       parallel {
         stage('test') {
           steps {
-            sh 'gcgfc'
+            
           }
         }
 
         stage('tools') {
           steps {
-            tool(name: 'sfdx', type: 'c')
+           
           }
         }
 
@@ -20,7 +21,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'hh'
+        
       }
     }
 
