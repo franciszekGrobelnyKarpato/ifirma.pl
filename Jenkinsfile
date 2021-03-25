@@ -1,10 +1,5 @@
 import groovy.json.JsonSlurperClassic
 
-environment {
-
-    PATH = "C:\\Program Files\\Salesforce CLI\\bin"
-
-}
  
 node {
 
