@@ -1,6 +1,13 @@
 import groovy.json.JsonSlurperClassic
+
+environment {
+
+    PATH = "C:\\WINDOWS\\SYSTEM32"
+
+}
  
 node {
+
  
 	def HUB_ORG=env.HUB_ORG_DH
 	def SFDC_HOST=env.SFDC_HOST_DH
