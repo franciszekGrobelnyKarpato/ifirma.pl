@@ -14,9 +14,7 @@ node {
     }
 	withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
  
-            // ------------------------------------------------------------------------
-            // Authorize the Dev Hub org with JWT key and give it an alias.
-            // ------------------------------------------------------------------------
+     
 			println " --instanceurl ${SFDC_HOST} --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file}"
 			
             stage('Authorize DevHub') {
