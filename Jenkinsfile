@@ -9,12 +9,6 @@ node {
  
     def toolbelt = tool 'toolbelt'
 	
-	println 'env variables'
-	println CONNECTED_APP_CONSUMER_KEY
-	println JWT_KEY_CRED_ID
-	println SFDC_HOST
-	println HUB_ORG
-	
 	stage('checkout source') {
         checkout scm
     }
@@ -23,7 +17,8 @@ node {
             // ------------------------------------------------------------------------
             // Authorize the Dev Hub org with JWT key and give it an alias.
             // ------------------------------------------------------------------------
-			println "${jwt_key_file}"
+			println " --instanceurl ${SFDC_HOST} --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file}"
+			
             stage('Authorize DevHub') {
                 rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SFDC_HOST} --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file}"
                 if (rc != 0) {
